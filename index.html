@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIHA Animation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .text {
+      font-size: 10vw;
+      font-weight: bold;
+      color: #ff0000;
+      opacity: 0;
+      transition: all 1s ease-in-out;
+    }
+
+    .text.active {
+      opacity: 1;
+    }
+
+    .text.fade-out {
+      opacity: 0;
+    }
+
+    .text.zoom-in {
+      transform: scale(2);
+    }
+
+    .text.zoom-out {
+      transform: scale(0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="text">DIHA</div>
+  </div>
+
+  <script>
+    const textElement = document.querySelector('.text');
+
+    function animateText() {
+      textElement.classList.add('active');
+
+      setTimeout(() => {
+        textElement.classList.add('fade-out');
+      }, 1000);
+
+      setTimeout(() => {
+        textElement.classList.remove('fade-out');
+        textElement.classList.add('zoom-in');
+      }, 2000);
+
+      setTimeout(() => {
+        textElement.classList.remove('zoom-in');
+        textElement.classList.add('zoom-out');
+      }, 3000);
+
+      setTimeout(() => {
+        textElement.classList.remove('zoom-out');
+        textElement.classList.remove('active');
+      }, 4000);
+
+      setTimeout(() => {
+        animateText();
+      }, 5000);
+    }
+
+    animateText();
+  </script>
+</body>
+
+</html>
